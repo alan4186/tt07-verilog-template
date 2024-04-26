@@ -21,4 +21,16 @@ module tt_um_example (
   assign uio_out = 0;
   assign uio_oe  = 0;
 
+uart_tx #(
+  .CLOCK_FREQUENCY(50000000),
+  .BAUD_RATE(9600)
+) DUT (
+  .clock(clk),
+  .reset(~rst_n),
+  .tx_valid(uio_in[0]),
+  .tx_data_in(ui_in),
+  .serial_tx(uo_out[0]),
+  .tx_busy(uo_out[1])
+);
+
 endmodule
